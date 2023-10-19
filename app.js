@@ -7,6 +7,7 @@ const { NotFoundError } = require("./expressError");
 const itemsRoutes = require("./itemsRoutes");
 
 app.use(express.json());
+
 app.use("/items", itemsRoutes);
 
 /** 404 handler: matches unmatched routes. */

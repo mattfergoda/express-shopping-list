@@ -24,7 +24,7 @@ function validateNewItemJSON(req, res, next) {
 
   for (let input of inputs) {
     if (!(input in req.body)) {
-      throw new BadRequestError();
+      throw new BadRequestError(`${input} required.`);
     }
   }
 
@@ -35,13 +35,14 @@ function validateNewItemJSON(req, res, next) {
 function validateUpdateItemJSON(req, res, next) {
   const inputs = ['name', 'price'];
 
-  for (let input of req.body) {
-    if (input in inputs) {
+  console.log("Req.body", req.body)
+  for (let input in req.body) {
+    if (inputs.includes(input)) {
       next();
     }
   }
 
-  throw new BadRequestError();
+  throw new BadRequestError("Name or price required.");
 }
 
 /** GET /items: get list of items */
